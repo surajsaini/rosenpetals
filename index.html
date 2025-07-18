@@ -487,6 +487,7 @@
             overflow: hidden;
             background: var(--white);
         }
+
         .about-header {
             background: var(--soft-green);
             padding: 1rem 1.5rem;
@@ -496,35 +497,42 @@
             align-items: center;
             transition: background 0.3s;
         }
+
         .about-header:hover {
             background: var(--hover);
         }
+
         .about-header h3 {
             color: #7bb274;
             font-size: 1.1rem;
             margin: 0;
         }
+
         .about-toggle {
             font-size: 1.2rem;
             color: #b85c8c;
             transition: transform 0.3s;
         }
+
         .about-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
             padding: 0 1.5rem;
         }
+
         .about-content.active {
             max-height: 300px;
             padding: 1rem 1.5rem;
         }
+
         .about-content p {
             font-size: 1rem;
             color: #4a4a4a;
             line-height: 1.6;
             margin: 0;
         }
+
         .about-section.active .about-toggle {
             transform: rotate(180deg);
         }
@@ -559,8 +567,10 @@
             </div>
             <div class="about-content active">
                 <p>Explore the enchanting world of flowers at "Rose N Petals - Unit of Sharma Flowers," your one-stop
-                    destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and Greater
-                    Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real flowers,
+                    destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and
+                    Greater
+                    Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real
+                    flowers,
                     artificial blooms, and indoor plants to your doorstep.</p>
             </div>
         </div>
@@ -571,10 +581,14 @@
                 <span class="about-toggle">▼</span>
             </div>
             <div class="about-content">
-                <p>Make your special moments memorable with our custom flower bouquets designed for Marriage Anniversaries,
-                    Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take pride in our
-                    beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're in
-                    India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number, and let
+                <p>Make your special moments memorable with our custom flower bouquets designed for Marriage
+                    Anniversaries,
+                    Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take
+                    pride in our
+                    beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're
+                    in
+                    India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number,
+                    and let
                     us add a touch of floral magic to your moments.</p>
             </div>
         </div>
@@ -587,16 +601,17 @@
             <p>📍 <strong>Address:</strong> Shop no. 3, Nehru Nagar, near Nehru Stadium, Ghaziabad</p>
             <p>📞 <strong>Phone Number:</strong> <a href="tel:+919599308501">+91 9599308501</a></p>
             <p>🗺️ <strong>Google Map Location:</strong> <a href="https://g.page/RoseNPetals" target="_blank"
-                    rel="noopener">g.page/RoseNPetals</a></p>
+                    rel="noopener">View on Google Maps</a></p>
             <p>📘 <strong>Facebook:</strong> <a href="https://fb.com/rosenpetalsghaziabad" target="_blank"
-                    rel="noopener">fb.com/rosenpetalsghaziabad</a></p>
+                    rel="noopener">Visit Our Facebook Page</a></p>
             <p>📷 <strong>Instagram:</strong> <a href="https://instagram.com/rosenpetalsghaziabad" target="_blank"
-                    rel="noopener">instagram.com/rosenpetalsghaziabad</a></p>
-            <p>🌸 <strong>Our Services:</strong> Fresh Flower Bouquet, Indoor Plant, Artificial Flower Arrangement</p>
-            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919599308501" target="_blank"
-                    rel="noopener">wa.me/919599308501</a></p>
+                    rel="noopener">Follow Us on Instagram</a></p>
+
+            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919599308501" target="_blank" rel="noopener">Chat on
+                    WhatsApp</a></p>
             <p>📋 <strong>JustDial:</strong> <a href="https://www.justdial.com/Ghaziabad/Rose-N-Petals-Ghaziabad"
-                    target="_blank" rel="noopener">Rose N Petals Ghaziabad on JustDial</a></p>
+                    target="_blank" rel="noopener">Find Us on JustDial</a></p>
+            <p>🌸 <strong>Our Services:</strong> Fresh Flower Bouquet, Indoor Plant, Artificial Flower Arrangement</p>
         </div>
     </section>
 
@@ -739,7 +754,7 @@
             const section = header.parentElement;
             const content = header.nextElementSibling;
             const toggle = header.querySelector('.about-toggle');
-            
+
             // Close all other sections
             document.querySelectorAll('.about-section').forEach(s => {
                 if (s !== section) {
@@ -747,7 +762,7 @@
                     s.querySelector('.about-content').classList.remove('active');
                 }
             });
-            
+
             // Toggle current section
             section.classList.toggle('active');
             content.classList.toggle('active');
