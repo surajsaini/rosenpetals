@@ -478,6 +478,56 @@
         .contact-info strong {
             color: #b85c8c;
         }
+
+        /* Collapsible About Sections */
+        .about-section {
+            margin-bottom: 1rem;
+            border: 1px solid #e3c6f7;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        .about-header {
+            background: var(--soft-green);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .about-header:hover {
+            background: var(--hover);
+        }
+        .about-header h3 {
+            color: #7bb274;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .about-toggle {
+            font-size: 1.2rem;
+            color: #b85c8c;
+            transition: transform 0.3s;
+        }
+        .about-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+        .about-content.active {
+            max-height: 300px;
+            padding: 1rem 1.5rem;
+        }
+        .about-content p {
+            font-size: 1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .about-section.active .about-toggle {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
@@ -502,17 +552,32 @@
     <!-- About Us Section -->
     <section class="about" id="about">
         <h2>About Us</h2>
-        <p>Explore the enchanting world of flowers at "Rose N Petals - Unit of Sharma Flowers," your one-stop
-            destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and Greater
-            Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real flowers,
-            artificial blooms, and indoor plants to your doorstep.</p>
+        <div class="about-section active">
+            <div class="about-header" onclick="toggleAbout(this)">
+                <h3>Who We Are</h3>
+                <span class="about-toggle">▼</span>
+            </div>
+            <div class="about-content active">
+                <p>Explore the enchanting world of flowers at "Rose N Petals - Unit of Sharma Flowers," your one-stop
+                    destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and Greater
+                    Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real flowers,
+                    artificial blooms, and indoor plants to your doorstep.</p>
+            </div>
+        </div>
 
-        <p>Make your special moments memorable with our custom flower bouquets designed for Marriage Anniversaries,
-            Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take pride in our
-            beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're in
-            India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number, and let
-            us add a touch of floral magic to your moments.</p>
-
+        <div class="about-section">
+            <div class="about-header" onclick="toggleAbout(this)">
+                <h3>Our Services & Special Moments</h3>
+                <span class="about-toggle">▼</span>
+            </div>
+            <div class="about-content">
+                <p>Make your special moments memorable with our custom flower bouquets designed for Marriage Anniversaries,
+                    Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take pride in our
+                    beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're in
+                    India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number, and let
+                    us add a touch of floral magic to your moments.</p>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Us Section -->
@@ -668,6 +733,25 @@
         });
         // Service card hover handled by CSS
         // Menu item hover handled by CSS
+
+        // Collapsible About Sections
+        function toggleAbout(header) {
+            const section = header.parentElement;
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.about-toggle');
+            
+            // Close all other sections
+            document.querySelectorAll('.about-section').forEach(s => {
+                if (s !== section) {
+                    s.classList.remove('active');
+                    s.querySelector('.about-content').classList.remove('active');
+                }
+            });
+            
+            // Toggle current section
+            section.classList.toggle('active');
+            content.classList.toggle('active');
+        }
     </script>
 </body>
 
