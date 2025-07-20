@@ -418,7 +418,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
+            width: auto;
             height: 60px;
             background: #25d366;
             border-radius: 50%;
@@ -426,18 +426,32 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 30px;
+            font-size: 16px;
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
             z-index: 1000;
             transition: all 0.3s ease;
-            animation: whatsapp-pulse 2s infinite;
+            animation: whatsapp-pulse 3s infinite;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0 15px;
+            gap: 8px;
         }
 
         .whatsapp-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             color: white;
+        }
+
+        .whatsapp-btn .whatsapp-icon {
+            font-size: 24px;
+        }
+
+        .whatsapp-btn .whatsapp-text {
+            font-size: 14px;
+            font-weight: 600;
+            animation: text-fade-in 0.3s ease;
         }
 
         @keyframes whatsapp-pulse {
@@ -451,6 +465,18 @@
 
             100% {
                 transform: scale(1);
+            }
+        }
+
+        @keyframes text-fade-in {
+            0% {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
 
@@ -600,16 +626,16 @@
         <div class="contact-info">
             <p>📍 <strong>Address:</strong> Shop no. 3, Nehru Nagar, near Nehru Stadium, Ghaziabad</p>
             <p>📞 <strong>Phone Number:</strong> <a href="tel:+919599308501">+91 9599308501</a></p>
-            <p>🗺️ <strong>Google Map Location:</strong> <a href="https://g.page/RoseNPetals" target="_blank"
+            <p>🗺️ <strong> <a href="https://g.page/RoseNPetals" target="_blank"
                     rel="noopener">View on Google Maps</a></p>
-            <p>📘 <strong>Facebook:</strong> <a href="https://fb.com/rosenpetalsghaziabad" target="_blank"
+            <p>📘 <strong> <a href="https://fb.com/rosenpetalsghaziabad" target="_blank"
                     rel="noopener">Visit Our Facebook Page</a></p>
-            <p>📷 <strong>Instagram:</strong> <a href="https://instagram.com/rosenpetalsghaziabad" target="_blank"
+            <p>📷 <strong> <a href="https://instagram.com/rosenpetalsghaziabad" target="_blank"
                     rel="noopener">Follow Us on Instagram</a></p>
 
-            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919599308501" target="_blank" rel="noopener">Chat on
+            <p>💬 <strong> <a href="https://wa.me/919599308501" target="_blank" rel="noopener">Chat on
                     WhatsApp</a></p>
-            <p>📋 <strong>JustDial:</strong> <a href="https://www.justdial.com/Ghaziabad/Rose-N-Petals-Ghaziabad"
+            <p>📋 <strong> <a href="https://www.justdial.com/Ghaziabad/Rose-N-Petals-Near-Jawaharlal-Nehru-Stadium-NEHRU-NAGAR-GHAZIABAD/011PXX11-XX11-201022165523-J4T9_BZDET"
                     target="_blank" rel="noopener">Find Us on JustDial</a></p>
             <p>🌸 <strong>Our Services:</strong> Fresh Flower Bouquet, Indoor Plant, Artificial Flower Arrangement</p>
         </div>
@@ -691,7 +717,8 @@
     </footer>
     <!-- WhatsApp Button -->
     <a href="https://wa.me/919599308501" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
-        📱
+        <span class="whatsapp-icon">💬</span>
+        <span class="whatsapp-text">Start WhatsApp Chat</span>
     </a>
 
     <script>
@@ -716,26 +743,72 @@
                 }
             });
         });
-        // Gentle falling flower animation on mousemove
+        // Gentle falling flower animation on mousemove (desktop) and scroll (mobile)
         const petalSVGs = [
             '<svg width="28" height="28" viewBox="0 0 28 28"><ellipse cx="14" cy="14" rx="8" ry="14" fill="#f8e1e7"/><ellipse cx="14" cy="8" rx="4" ry="7" fill="#e3c6f7"/></svg>',
             '<svg width="24" height="24" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6" ry="10" fill="#eafaf1"/><ellipse cx="12" cy="7" rx="3" ry="5" fill="#b85c8c" opacity="0.13"/></svg>',
             '<svg width="20" height="20" viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="5" ry="8" fill="#fbeff3"/><ellipse cx="10" cy="5" rx="2.5" ry="4" fill="#7bb274" opacity="0.13"/></svg>'
         ];
         let lastPetalTime = 0;
-        document.addEventListener('mousemove', (e) => {
+        let lastScrollTime = 0;
+        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Create petal function
+        function createPetal(x, y, isScroll = false) {
             const now = Date.now();
-            if (now - lastPetalTime < 30) return; // reduced spawn rate for faster response
+            const timeLimit = isScroll ? 100 : 30; // Slower for scroll
+            if (now - lastPetalTime < timeLimit) return;
             lastPetalTime = now;
+            
             const petal = document.createElement('div');
             petal.className = 'petal';
             petal.innerHTML = petalSVGs[Math.floor(Math.random() * petalSVGs.length)];
-            petal.style.left = (e.clientX + (Math.random() * 40 - 20)) + 'px';
-            petal.style.top = (e.clientY - 20 + (Math.random() * 20 - 10)) + 'px';
+            
+            if (isScroll) {
+                // For scroll: random position across top of screen
+                petal.style.left = (Math.random() * window.innerWidth) + 'px';
+                petal.style.top = '-20px';
+            } else {
+                // For mouse: near cursor
+                petal.style.left = (x + (Math.random() * 40 - 20)) + 'px';
+                petal.style.top = (y - 20 + (Math.random() * 20 - 10)) + 'px';
+            }
+            
             petal.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
-            petal.style.animationDuration = (0.8 + Math.random() * 0.4) + 's'; // even faster animation
+            petal.style.animationDuration = (0.8 + Math.random() * 0.4) + 's';
             document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 1200); // shorter removal time
+            setTimeout(() => petal.remove(), 1200);
+        }
+
+        // Desktop: mousemove
+        document.addEventListener('mousemove', (e) => {
+            if (!isMobile) {
+                createPetal(e.clientX, e.clientY);
+            }
+        });
+
+        // Mobile: scroll-triggered petals
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (isMobile) {
+                const now = Date.now();
+                if (now - lastScrollTime < 200) return; // Limit scroll frequency
+                lastScrollTime = now;
+                
+                // Clear previous timeout
+                clearTimeout(scrollTimeout);
+                
+                // Create petals after scroll stops
+                scrollTimeout = setTimeout(() => {
+                    // Create 2-4 petals from top of screen
+                    const petalCount = Math.floor(Math.random() * 3) + 2;
+                    for (let i = 0; i < petalCount; i++) {
+                        setTimeout(() => {
+                            createPetal(0, 0, true);
+                        }, i * 100);
+                    }
+                }, 100);
+            }
         });
         // Pop-up flower emoji animation on click
         document.addEventListener('click', (e) => {
