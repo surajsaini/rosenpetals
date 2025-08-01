@@ -346,39 +346,34 @@
             }
         }
 
-
-        .flower-popup {
+        /* Rose N Petals Image Zoom Animation */
+        .rose-image-popup {
             position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%) scale(1);
+            left: 20px;
+            top: 20px;
+            transform: scale(0.1);
             z-index: 10000;
-            opacity: 1;
-            font-size: 4rem;
-            animation: flower-pop 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
             pointer-events: none;
-            filter: drop-shadow(0 2px 8px #e3c6f7);
+            animation: rose-zoom 3s ease-in-out forwards;
         }
 
-        @keyframes flower-pop {
+        @keyframes rose-zoom {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.7) rotate(-10deg);
+                transform: scale(0.1);
             }
-
-            40% {
+            20% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+                transform: scale(0.3);
             }
-
-            70% {
+            80% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1) rotate(-2deg);
+                transform: scale(1);
             }
-
             100% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.7) rotate(0deg);
+                transform: scale(1.2);
             }
         }
 
@@ -524,6 +519,8 @@
         .about-section.active .about-toggle {
             transform: rotate(180deg);
         }
+
+
     </style>
 </head>
 
@@ -587,13 +584,12 @@
         <h2>Contact Us</h2>
         <div class="contact-info">
             <p>📍 <strong>Address:</strong> Shop no. 3, Nehru Nagar, near Nehru Stadium, Ghaziabad</p>
-            <p>📞 <strong>Phone Number:</strong> +91 9599308501</p>
-            <p>🗺️ <a href="https://g.page/RoseNPetals" target="_blank" rel="noopener">Google Maps Location</a></p>
-            <p>📘 <a href="https://fb.com/rosenpetalsghaziabad" target="_blank" rel="noopener">Visit Our Facebook Page</a></p>
-            <p>📷 <a href="https://instagram.com/rosenpetalsghaziabad" target="_blank" rel="noopener">Follow Us on Instagram</a></p>
-            <p>💬 <a href="https://wa.me/919599308501" target="_blank" rel="noopener">Start Chat on WhatsApp</a></p>
-            <p>📋 <a href="https://www.justdial.com/Ghaziabad/Rose-N-Petals-Near-Jawaharlal-Nehru-Stadium-NEHRU-NAGAR-GHAZIABAD/011PXX11-XX11-201022165523-J4T9_BZDET"
-                    target="_blank" rel="noopener">Find Us on JustDial</a></p>
+            <p>📞 <strong>Phone Number:</strong> <a href="tel:+919599308501">+91 9599308501</a></p>
+            <p>🗺️ <strong>Google Maps:</strong> <a href="https://g.page/RoseNPetals" target="_blank" rel="noopener">View Location</a></p>
+            <p>📘 <strong>Facebook:</strong> <a href="https://fb.com/rosenpetalsghaziabad" target="_blank" rel="noopener">Visit Our Page</a></p>
+            <p>📷 <strong>Instagram:</strong> <a href="https://instagram.com/rosenpetalsghaziabad" target="_blank" rel="noopener">Follow Us</a></p>
+            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919599308501" target="_blank" rel="noopener">Chat Now</a></p>
+            <p>📋 <strong>JustDial:</strong> <a href="https://www.justdial.com/Ghaziabad/Rose-N-Petals-Ghaziabad" target="_blank" rel="noopener">Find Us</a></p>
             <p>🌸 <strong>Our Services:</strong> Fresh Flower Bouquet, Indoor Plant, Artificial Flower Arrangement</p>
         </div>
     </section>
@@ -757,15 +753,20 @@
                 }, 100);
             }
         });
-        // Pop-up flower emoji animation on click
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('nav, .flower-popup, form, input, textarea, button')) return;
+        // Rose N Petals image zoom animation every 5 seconds
+        function showRoseImage() {
             const popup = document.createElement('div');
-            popup.className = 'flower-popup';
-            popup.textContent = '🌸';
+            popup.className = 'rose-image-popup';
+            popup.innerHTML = '<img src="rose.png" alt="Rose N Petals" style="max-width: 400px; max-height: 300px; width: auto; height: auto; object-fit: contain;">';
             document.body.appendChild(popup);
-            setTimeout(() => popup.remove(), 1000);
-        });
+            setTimeout(() => popup.remove(), 3000);
+        }
+
+        // Start the interval after page loads
+        setTimeout(() => {
+            showRoseImage(); // Show first image immediately
+            setInterval(showRoseImage, 5000); // Show image every 5 seconds
+        }, 1000);
     
 
         // Collapsible About Sections
