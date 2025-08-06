@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Flower Decorators | Professional Flower Decoration Services</title>
+    <meta name="description"
+        content="Professional flower decoration services for weddings, corporate events, and special occasions in Ghaziabad, Noida & Greater Noida. Transform any space with artistic floral arrangements.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <style>
+        :root {
+            --pink: #f8e1e7;
+            --green: #d6f5e3;
+            --white: #fff;
+            --text: #3a3a3a;
+            --soft-green: #eafaf1;
+            --soft-pink: #fbeff3;
+            --hover: #f3d6e3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            background: var(--soft-pink);
+            color: var(--text);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(220, 180, 220, 0.08);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--hover);
+            color: #b85c8c;
+            transform: scale(1.08);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 1.5rem 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-height: unset;
+        }
+
+        .home h1 {
+            font-size: 2.7rem;
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home p {
+            font-size: 1.3rem;
+            color: #5e5e5e;
+            margin-bottom: 2rem;
+        }
+
+        /* Services */
+        .services {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .services h2 {
+            color: #b85c8c;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .service-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .service-card {
+            background: var(--soft-green);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(180, 220, 180, 0.10);
+            padding: 2rem 1.5rem;
+            width: 270px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.04) rotate(-1deg);
+            box-shadow: 0 8px 24px rgba(180, 220, 180, 0.18);
+            background: var(--hover);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+            color: #7bb274;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #4a4a4a;
+        }
+
+        /* About Us */
+        .about {
+            background: var(--soft-green);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(180, 220, 180, 0.08);
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .about h2 {
+            color: #7bb274;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* Contact Us */
+        .contact {
+            background: var(--soft-pink);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .contact h2 {
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--soft-green);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-info strong {
+            color: #b85c8c;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            color: #7bb274;
+            text-align: center;
+            padding: 1.5rem 1rem 1rem 1rem;
+            font-size: 1rem;
+            border-top: 1px solid #e3c6f7;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            color: #b85c8c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .service-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            section {
+                padding: 1rem 0.2rem;
+            }
+            .home h1 {
+                font-size: 2rem;
+            }
+
+            .services h2,
+            .about h2,
+            .contact h2 {
+                font-size: 1.3rem;
+            }
+
+            .service-card {
+                width: 95%;
+                padding: 1.2rem 0.7rem;
+            }
+
+            .back-to-top {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav>
+        <ul>
+            <li><a href="home.html" class="nav-link">Home</a></li>
+            <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <h1>🌸 Sharma Flower Decorators</h1>
+        <p>Professional Flower Decoration Services</p>
+        <p style="font-size: 1.1rem; color: #7bb274;">Transform any space with our artistic floral arrangements</p>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>📍 <strong>Address:</strong> Shop no. 7, Flower Market, Chaudhary Mod, GT Road, Ghaziabad</p>
+            <p>📞 <strong>Phone Number:</strong> <a href="tel:+919999889817">+91 9999889817</a></p>
+            <p>🗺️ <strong>Google Map Location:</strong> <a href="https://g.page/SharmaFlorist" target="_blank" rel="noopener">g.page/SharmaFlorist</a></p>
+            <p>📘 <strong>Facebook:</strong> <a href="https://fb.com/SharmaFlorist" target="_blank" rel="noopener">fb.com/SharmaFlorist</a></p>
+            <p>📷 <strong>Instagram:</strong> <a href="https://instagram.com/SharmaFlorist" target="_blank" rel="noopener">instagram.com/SharmaFlorist</a></p>
+            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/919999889817" target="_blank" rel="noopener">Chat Now</a></p>
+            <p>📋 <strong>JustDial:</strong> <a href="https://www.justdial.com/Delhi/Sharma-Flower-Decorators-Chaudhary-More/011PXX11-XX11-180115000507-F3Q4_BZDET" target="_blank" rel="noopener">Sharma Flower Decorators on JustDial</a></p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Decoration Services</h2>
+        <div class="service-cards">
+            
+            <div class="service-card">
+                <h3>💒 Wedding Decoration</h3>
+                <p>Complete wedding venue decoration including mandap, reception area, and ceremony spaces with elegant floral arrangements and decorative elements.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🏢 Corporate Events</h3>
+                <p>Professional flower decoration for corporate events, conferences, and business functions with sophisticated arrangements.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🎂 Birthday Celebrations</h3>
+                <p>Vibrant and colorful flower decorations for birthday parties and celebrations with themed arrangements.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🏠 Home Decoration</h3>
+                <p>Interior flower decoration services for homes, including living rooms, dining areas, and special spaces.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🎉 Party Decoration</h3>
+                <p>Festive flower decorations for all types of parties and celebrations with creative and unique designs.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>🌿 Event Styling</h3>
+                <p>Complete event styling and decoration services including floral centerpieces, backdrops, and thematic arrangements.</p>
+            </div>
+
+        
+            <div class="service-card">
+                <h3>Stage Decoration</h3>
+                <p>Our stage decoration sets the standard for excellence in the Delhi NCR region. Renowned for our meticulous attention to detail, we strive to create captivating settings for our clients' events. With your invaluable support, we've earned the distinction of being the top choice for flower decoration services. Trust us to infuse your events with the perfect blend of elegance and charm.</p>
+            </div>
+            <div class="service-card">
+                <h3>Mandap Decoration</h3>
+                <p>The mandap holds profound significance in Indian weddings, symbolizing sacred union and blessings. Adorned with vibrant flowers, our mandap decorations add to the ceremonial splendor, ensuring that every ritual, from pheras to the exchange of garlands, unfolds in an atmosphere of timeless beauty and reverence.</p>
+            </div>
+            <div class="service-card">
+                <h3>Doli Decoration</h3>
+                <p>The departure of the bride and groom, encapsulated in the traditional 'doli,' marks a poignant moment in Hindu weddings. Our expertly crafted doli decorations enhance this emotional journey, enveloping the couple in a tapestry of floral enchantment as they embark on their new life together.</p>
+            </div>
+            <div class="service-card">
+                <h3>Wedding Home Decoration</h3>
+                <p>Just as the bride and groom radiate beauty on their special day, so too should their wedding home. Our affordable yet exquisite floral arrangements promise to transform your space into a haven of joy and celebration, ensuring that every guest is greeted with warmth and elegance.</p>
+            </div>
+            <div class="service-card">
+                <h3>Marriage Hall or Banquet Hall Decoration</h3>
+                <p>Transforming vast spaces into enchanting settings is our forte. Whether it's a grand banquet hall or a sprawling farmhouse, our skilled team excels at creating captivating décors that leave a lasting impression on guests. Contact us to elevate the ambiance of your chosen venue in Ghaziabad, Noida, or Greater Noida.</p>
+            </div>
+            <div class="service-card">
+                <h3>Wedding Car Decoration</h3>
+                <p>In today's weddings, the adorned car symbolizes the couple's journey into a new chapter of life. Our diverse designs guarantee to enhance the allure of your wedding car, adding a touch of glamour to your vidaai ceremony. Book us now for an unforgettable send-off.</p>
+            </div>
+            <div class="service-card">
+                <h3>Entrance Decoration</h3>
+                <p>The entrance sets the tone for any occasion, welcoming guests into a world of splendor and festivity. Our exquisite floral arrangements, embellished with delicate chunni and twinkling lights, ensure that your venue's entrance leaves a lasting impression on all who pass through it.</p>
+            </div>
+            <div class="service-card">
+                <h3>24*7 Flower Bouquet Delivery</h3>
+                <p>For those spontaneous moments that demand celebration, our round-the-clock flower delivery service is at your disposal. Whether it's a joyous occasion or a heartfelt gesture, count on us to deliver fresh, vibrant blooms to your desired location in Ghaziabad, Noida, or Greater Noida promptly.</p>
+            </div>
+            <div class="service-card">
+                <h3>Birthday Party Decoration</h3>
+                <p>Make every birthday a memorable affair with our enchanting decorations. From vibrant flowers to colorful balloons, we have everything you need to transform your venue into a festive paradise. Contact us now for hassle-free and affordable party decorations.</p>
+            </div>
+            <div class="service-card">
+                <h3>Pooja, Kirtan, Temple Decoration</h3>
+                <p>Elevate the spiritual ambiance of your Pooja, Kirtan, or temple ceremonies with our expert decorations. Our exquisite floral arrangements are tailored to enhance the sanctity of the occasion, ensuring a divine experience for all.</p>
+            </div>
+            <div class="service-card">
+                <h3>First Night Room or Bed Decoration</h3>
+                <p>Set the stage for romance with our enchanting bed decorations for your first night together as a couple. Our tasteful arrangements promise to create an ambiance of intimacy and luxury, setting the perfect mood for an unforgettable evening.</p>
+            </div>
+            <div class="service-card">
+                <h3>Ladies Sangeet / Mehndi Function Decoration</h3>
+                <p>Celebrate the vibrancy of Indian weddings with our stunning decorations for ladies sangeet and Mehndi functions. From traditional motifs to contemporary designs, our decorations add a touch of elegance and festivity to every event. Contact us today for affordable and exquisite décor options.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>"Sharma Flowers Ghaziabad is the oldest and best flower shop in Ghaziabad, located at the flower market in Chaudhary Mod. We have been serving as a florist for over 50 years. Our shop at Chaudhary Mod flower market is open from 7 am in the morning until 11 pm at night. We specialize in various wedding decorations, including decorations for wedding homes, haldi mehndi ceremonies, wedding cars, jai mala, phool chadar, farmhouse banquet hall entrances, and stage decorations for all types of events. You can reach us by calling the mobile number provided below to book our services in advance. Our decoration services are available in Noida, Ghaziabad, and Greater Noida."</p>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Footer -->
+    <footer>
+        <div>Sharma Flower Decorators &copy; 2025 | Professional Flower Decoration Services in Ghaziabad, Noida & Greater Noida</div>
+    </footer>
+
+    <script>
+        // Smooth scroll and active nav
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight nav on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + 80;
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const section = document.querySelector(href);
+                    if (section && section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html> 

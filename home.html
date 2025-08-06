@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Florist - Home | Flower Delivery & Decoration Services</title>
+    <meta name="description"
+        content="Sharma Florist - Your trusted partner for flower delivery and decoration services in Ghaziabad, Noida & Greater Noida. Same-day delivery from Canada/US to India.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <style>
+        :root {
+            --pink: #f8e1e7;
+            --green: #d6f5e3;
+            --white: #fff;
+            --text: #3a3a3a;
+            --soft-green: #eafaf1;
+            --soft-pink: #fbeff3;
+            --hover: #f3d6e3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            background: var(--soft-pink);
+            color: var(--text);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(220, 180, 220, 0.08);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--hover);
+            color: #b85c8c;
+            transform: scale(1.08);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 1.5rem 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-height: unset;
+        }
+
+        .home h1 {
+            font-size: 2.7rem;
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home p {
+            font-size: 1.3rem;
+            color: #5e5e5e;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(220, 180, 220, 0.18);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #b85c8c;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card .cta-btn {
+            background: linear-gradient(90deg, var(--pink), var(--green));
+            color: #b85c8c;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .service-card .cta-btn:hover {
+            background: var(--hover);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--soft-green);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(180, 220, 180, 0.08);
+            margin-bottom: 2rem;
+            text-align: center;
+            padding: 2.5rem;
+        }
+
+        .about h2 {
+            color: #7bb274;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            color: #7bb274;
+            text-align: center;
+            padding: 1.5rem 1rem 1rem 1rem;
+            font-size: 1rem;
+            border-top: 1px solid #e3c6f7;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            color: #b85c8c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .home h1 {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .back-to-top {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            section {
+                padding: 1rem 0.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#services" class="nav-link">Our Services</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <h1>Sharma Florist</h1>
+        <p>Your Trusted Partner for Flower Delivery & Decoration Services</p>
+        <p style="font-size: 1.1rem; color: #7bb274;">Serving Ghaziabad, Noida & Greater Noida since 1950</p>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 style="color: #b85c8c; margin-bottom: 2rem; font-size: 2rem;">Our Services</h2>
+        <div class="services-grid">
+            
+            <!-- Rose N Petals -->
+            <div class="service-card">
+                <h3>🌹 Rose N Petals</h3>
+                <p>Specialized flower bouquet delivery service. Fresh flowers, custom arrangements, and same-day delivery for all occasions including birthdays, anniversaries, and special celebrations.</p>
+                <a href="rosenpetals.html" class="cta-btn">Explore Bouquet Delivery</a>
+            </div>
+
+            <!-- Sharma Flower Decorators -->
+            <div class="service-card">
+                <h3>🌸 Sharma Flower Decorators</h3>
+                <p>Professional flower decoration services for weddings, corporate events, and special occasions. Transform any space with our artistic floral arrangements and decorative expertise.</p>
+                <a href="sharmaflowerdecorators.html" class="cta-btn">View Decoration Services</a>
+            </div>
+
+            <!-- International Delivery -->
+            <div class="service-card">
+                <h3>🌍 International Delivery</h3>
+                <p>Same-day flower delivery from Canada/US to Ghaziabad, Noida & Greater Noida. Send love across borders with our reliable international flower delivery service.</p>
+                <a href="ca-us-flower-delivery-to-ghaziabad-noida.html" class="cta-btn">Learn About International Delivery</a>
+            </div>
+
+            <!-- Blog -->
+            <div class="service-card">
+                <h3>📝 Blog</h3>
+                <p>Stay updated with the latest flower trends, care tips, and floral inspiration. Read our expert articles on flower arrangements, seasonal blooms, and celebration ideas.</p>
+                <a href="blog.html" class="cta-btn">Read Our Blog</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Footer -->
+    <footer>
+        <div>Sharma Florist &copy; 2025 | Flower Delivery & Decoration Services in Ghaziabad, Noida & Greater Noida</div>
+    </footer>
+
+    <script>
+        // Smooth scroll and active nav
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href === '#home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Highlight nav on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + 80;
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (section && section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html> 

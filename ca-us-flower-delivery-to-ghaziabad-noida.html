@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Flower Delivery | Canada/US to India | Same Day Delivery</title>
+    <meta name="description"
+        content="Same-day flower delivery from Canada/US to Ghaziabad, Noida & Greater Noida. Send love across borders with our reliable international flower delivery service.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <style>
+        :root {
+            --pink: #f8e1e7;
+            --green: #d6f5e3;
+            --white: #fff;
+            --text: #3a3a3a;
+            --soft-green: #eafaf1;
+            --soft-pink: #fbeff3;
+            --hover: #f3d6e3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            background: var(--soft-pink);
+            color: var(--text);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(220, 180, 220, 0.08);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--hover);
+            color: #b85c8c;
+            transform: scale(1.08);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 1.5rem 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-height: unset;
+        }
+
+        .home h1 {
+            font-size: 2.7rem;
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home p {
+            font-size: 1.3rem;
+            color: #5e5e5e;
+            margin-bottom: 2rem;
+        }
+
+        /* Services */
+        .services {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .services h2 {
+            color: #b85c8c;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .service-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .service-card {
+            background: var(--soft-green);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(180, 220, 180, 0.10);
+            padding: 2rem 1.5rem;
+            width: 270px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.04) rotate(-1deg);
+            box-shadow: 0 8px 24px rgba(180, 220, 180, 0.18);
+            background: var(--hover);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+            color: #7bb274;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #4a4a4a;
+        }
+
+        /* About Us */
+        .about {
+            background: var(--soft-green);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(180, 220, 180, 0.08);
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .about h2 {
+            color: #7bb274;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+        }
+
+        /* Coverage Areas */
+        .coverage {
+            background: var(--soft-pink);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .coverage h2 {
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .coverage-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--soft-green);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .coverage-info h3 {
+            color: #7bb274;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .coverage-info p {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .coverage-info strong {
+            color: #b85c8c;
+        }
+
+        /* Contact Us */
+        .contact {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .contact h2 {
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--soft-green);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .contact-info strong {
+            color: #b85c8c;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            color: #7bb274;
+            text-align: center;
+            padding: 1.5rem 1rem 1rem 1rem;
+            font-size: 1rem;
+            border-top: 1px solid #e3c6f7;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            color: #b85c8c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .service-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .home h1 {
+                font-size: 2rem;
+            }
+
+            .services h2,
+            .about h2,
+            .coverage h2,
+            .contact h2 {
+                font-size: 1.3rem;
+            }
+
+            .service-card {
+                width: 95%;
+                padding: 1.2rem 0.7rem;
+            }
+
+            .back-to-top {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            section {
+                padding: 1rem 0.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav>
+        <ul>
+            <li><a href="home.html" class="nav-link">Home</a></li>
+            <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <h1>🌍 International Flower Delivery</h1>
+        <p>Same-Day Delivery from Canada/US to India</p>
+        <p style="font-size: 1.1rem; color: #7bb274;">Send love across borders with our reliable international service</p>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            
+            <p>📞 <strong>Phone Number:</strong> <a href="tel:+13659981208">+1 3659981208</a></p>
+            <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/13659981208" target="_blank" rel="noopener">Chat Now</a></p>
+            
+            <p>🕒 <strong>Service Hours:</strong> 24/7 Online Ordering, Delivery: 8:00 AM - 8:00 PM IST</p>
+            
+            <p>💳 <strong>Payment Options:</strong> Credit Card, Debit Card, PayPal, Bank Transfer, UPI</p>
+            <p>🚚 <strong>Delivery Time:</strong> Same Day Delivery (Orders placed before 2:00 PM IST)</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our International Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <h3>🚀 Same-Day Delivery</h3>
+                <p>Express delivery service ensuring flowers reach your loved ones on the same day, maintaining freshness and quality throughout the journey.</p>
+            </div>
+            <div class="service-card">
+                <h3>🌹 Fresh Flower Bouquets</h3>
+                <p>Premium quality flower arrangements including roses, lilies, orchids, and seasonal blooms sourced from the finest international suppliers.</p>
+            </div>
+            <div class="service-card">
+                <h3>🎁 Gift Combos</h3>
+                <p>Complete gift packages including flowers, chocolates, greeting cards, and teddy bears for special occasions and celebrations.</p>
+            </div>
+            <div class="service-card">
+                <h3>📱 Easy Online Ordering</h3>
+                <p>Simple and secure online ordering system with multiple payment options and real-time tracking of your delivery.</p>
+            </div>
+            <div class="service-card">
+                <h3>🕒 Flexible Timing</h3>
+                <p>24/7 ordering service with flexible delivery time slots to accommodate your schedule and recipient's convenience.</p>
+            </div>
+            <div class="service-card">
+                <h3>💝 Custom Messages</h3>
+                <p>Personalized greeting cards and messages to accompany your flower delivery, making every gift special and meaningful.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <h2>About Our International Delivery Service</h2>
+        <p>We believe that distance should never stand in the way of expressing love, care, and meaningful emotions. Our international flower delivery service makes it easy to send fresh, beautifully arranged flowers from Canada and the United States to your loved ones in India. Whether you're celebrating a birthday, anniversary, or simply want to brighten someone's day, our bouquets — including luxurious 1000 red rose bouquets or elegant 100-rose boxes — are designed to leave a lasting impression.</p>
+        <p style="margin-top: 1rem;">With a reliable network of experienced florists and trusted delivery partners, we ensure same-day delivery while maintaining the freshness and charm of every bouquet. We proudly deliver from major cities across Canada such as Toronto, Vancouver, Montreal, Calgary, and Ottawa, as well as key locations in the United States including New York, Los Angeles, Chicago, Houston, and Miami.</p>
+        <p style="margin-top: 1rem;">In India, we cover a wide range of locations including Ghaziabad (Indirapuram, Vaishali, Kaushambi, and nearby areas) and Noida (Noida Extension, Greater Noida, and surrounding regions). Our mission is to help families, friends, and couples stay connected through the timeless beauty of flowers — no matter where they are in the world.</p>
+        <p style="margin-top: 1rem;">Express your love globally with a local heart, and make every occasion unforgettable with our personalized and prompt flower delivery service.</p>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Footer -->
+    <footer>
+        <div>International Flower Delivery &copy; 2025 | Same-Day Delivery from Canada/US to India</div>
+    </footer>
+
+    <script>
+        // Smooth scroll and active nav
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Highlight nav on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + 80;
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const section = document.querySelector(href);
+                    if (section && section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html> 

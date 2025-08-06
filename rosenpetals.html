@@ -82,7 +82,7 @@
 
         /* Section Styles */
         section {
-            padding: 4rem 1.5rem 3rem 1.5rem;
+            padding: 1.5rem 0.5rem;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -92,12 +92,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 60vh;
             text-align: center;
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             margin-top: 0;
             margin-bottom: 0;
+            min-height: unset;
         }
 
         .home h1 {
@@ -318,6 +318,9 @@
                 margin-bottom: 0.5rem;
                 font-size: 0.9rem;
             }
+            section {
+                padding: 1rem 0.2rem;
+            }
         }
 
         /* Flower Petal Animation */
@@ -520,6 +523,48 @@
             transform: rotate(180deg);
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            color: #b85c8c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Responsive for back to top */
+        @media (max-width: 600px) {
+            .back-to-top {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
 
     </style>
 </head>
@@ -528,10 +573,10 @@
     <!-- Sticky Navbar -->
     <nav>
         <ul>
-            <li><a href="#home" class="nav-link active">Home</a></li>
-            <li><a href="#about" class="nav-link">About Us</a></li>
-            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="home.html" class="nav-link">Home</a></li>
             <li><a href="#contact" class="nav-link">Contact Us</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#about" class="nav-link">About Us</a></li>
         </ul>
     </nav>
 
@@ -539,44 +584,6 @@
     <section class="home" id="home">
         <h1>Rose N Petals</h1>
         <p>Flower Bouquet Delivery Service, Working since 1950 in Ghaziabad, Noida and Greater Noida</p>
-        <a href="#services" class="cta-btn">Explore Our Services</a>
-    </section>
-
-    <!-- About Us Section -->
-    <section class="about" id="about">
-        <h2>About Us</h2>
-        <div class="about-section active">
-            <div class="about-header" onclick="toggleAbout(this)">
-                <h3>Who We Are</h3>
-                <span class="about-toggle">▼</span>
-            </div>
-            <div class="about-content active">
-                <p>Explore the enchanting world of flowers at "Rose N Petals - Unit of Sharma Flowers," your one-stop
-                    destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and
-                    Greater
-                    Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real
-                    flowers,
-                    artificial blooms, and indoor plants to your doorstep.</p>
-            </div>
-        </div>
-
-        <div class="about-section">
-            <div class="about-header" onclick="toggleAbout(this)">
-                <h3>Our Services & Special Moments</h3>
-                <span class="about-toggle">▼</span>
-            </div>
-            <div class="about-content">
-                <p>Make your special moments memorable with our custom flower bouquets designed for Marriage
-                    Anniversaries,
-                    Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take
-                    pride in our
-                    beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're
-                    in
-                    India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number,
-                    and let
-                    us add a touch of floral magic to your moments.</p>
-            </div>
-        </div>
     </section>
 
     <!-- Contact Us Section -->
@@ -651,6 +658,17 @@
         </div>
     </section>
 
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>Explore the enchanting world of flowers at "Rose N Petals - Unit of Sharma Flowers," your one-stop destination for beautiful fresh flower bouquets and artificial arrangements in Ghaziabad, Noida, and Greater Noida. Enjoy the convenience of fast same-day home delivery services that bring the beauty of real flowers, artificial blooms, and indoor plants to your doorstep.</p>
+        <p>Make your special moments memorable with our custom flower bouquets designed for Marriage Anniversaries, Valentine's Day, Birthdays, Mother's Day, Father's Day, and Funerals. At Rose N Petals, we take pride in our beautiful, regal, and distinctive flower arrangements, including bunches and baskets. Whether you're in India or anywhere else in the world, feel free to call or WhatsApp us at the provided mobile number, and let us add a touch of floral magic to your moments.</p>
+        <p>Find us at Nehru Nagar Ghaziabad, just in front of Nehru Stadium's main entry gate. Our shop offers a delightful variety of flowers like Roses, Carnations, Gerbera, Oriental Lily, Orchids, and more. We also have a wide range of indoor plants, such as Ficus Plant, Money Plant, Snake Plant, and Lucky Bamboo, to enhance the greenery in your space.</p>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
     <!-- Footer -->
     <footer>
         <div>Sharma Florist &copy; 2025 | Florist in Ghaziabad, Noida & Greater Noida</div>
@@ -668,23 +686,45 @@
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                navLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
             });
         });
+
         // Highlight nav on scroll
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY + 80;
             navLinks.forEach(link => {
-                const section = document.querySelector(link.getAttribute('href'));
-                if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const section = document.querySelector(href);
+                    if (section && section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
                 }
             });
+
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         // Gentle falling flower animation on mousemove (desktop) and scroll (mobile)
         const petalSVGs = [
             '<svg width="28" height="28" viewBox="0 0 28 28"><ellipse cx="14" cy="14" rx="8" ry="14" fill="#f8e1e7"/><ellipse cx="14" cy="8" rx="4" ry="7" fill="#e3c6f7"/></svg>',
@@ -753,11 +793,12 @@
                 }, 100);
             }
         });
+
         // Rose N Petals image zoom animation every 5 seconds
         function showRoseImage() {
             const popup = document.createElement('div');
             popup.className = 'rose-image-popup';
-            popup.innerHTML = '<img src="rose.png" alt="Rose N Petals" style="max-width: 400px; max-height: 300px; width: auto; height: auto; object-fit: contain;">';
+            popup.innerHTML = '<img src="rose.png" alt="Rose N Petals" style="max-width: 400px; max-height: 300px; width: auto; height: auto; object-fit: contain; opacity: 0.7;">';
             document.body.appendChild(popup);
             setTimeout(() => popup.remove(), 3000);
         }
@@ -767,7 +808,6 @@
             showRoseImage(); // Show first image immediately
             setInterval(showRoseImage, 5000); // Show image every 5 seconds
         }, 1000);
-    
 
         // Collapsible About Sections
         function toggleAbout(header) {

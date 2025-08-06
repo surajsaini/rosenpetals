@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Florist Blog | Flower Care Tips & Floral Inspiration</title>
+    <meta name="description"
+        content="Stay updated with the latest flower trends, care tips, and floral inspiration. Read our expert articles on flower arrangements, seasonal blooms, and celebration ideas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <style>
+        :root {
+            --pink: #f8e1e7;
+            --green: #d6f5e3;
+            --white: #fff;
+            --text: #3a3a3a;
+            --soft-green: #eafaf1;
+            --soft-pink: #fbeff3;
+            --hover: #f3d6e3;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            background: var(--soft-pink);
+            color: var(--text);
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Sticky Navbar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(220, 180, 220, 0.08);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            transition: background 0.3s;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--hover);
+            color: #b85c8c;
+            transform: scale(1.08);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 1.5rem 0.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 0;
+            min-height: unset;
+        }
+
+        .home h1 {
+            font-size: 2.7rem;
+            color: #b85c8c;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .home p {
+            font-size: 1.3rem;
+            color: #5e5e5e;
+            margin-bottom: 2rem;
+        }
+
+        /* Blog Posts */
+        .blog-posts {
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(220, 180, 220, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .blog-posts h2 {
+            color: #b85c8c;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .blog-post {
+            background: var(--soft-green);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(180, 220, 180, 0.10);
+            padding: 2rem;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(180, 220, 180, 0.18);
+            background: var(--hover);
+        }
+
+        .blog-post h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #7bb274;
+        }
+
+        .blog-post .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .blog-post p {
+            font-size: 1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post .read-more {
+            color: #b85c8c;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .blog-post .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .pagination button {
+            background: var(--white);
+            color: #b85c8c;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination button:disabled {
+            background: #f0f0f0;
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .pagination button:not(:disabled):hover {
+            background: var(--hover);
+            transform: scale(1.05);
+        }
+
+        /* Full Post View */
+        .full-post {
+            display: none;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 18px;
+            margin-bottom: 2rem;
+        }
+
+        .full-post.active {
+            display: block;
+        }
+
+        .full-post h2 {
+            color: #7bb274;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .full-post .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .full-post .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 2rem;
+        }
+
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .post-navigation button {
+            background: var(--soft-green);
+            color: #7bb274;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .post-navigation button:hover {
+            background: var(--hover);
+            color: #b85c8c;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--white);
+            color: #7bb274;
+            text-align: center;
+            padding: 1.5rem 1rem 1rem 1rem;
+            font-size: 1rem;
+            border-top: 1px solid #e3c6f7;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            color: #b85c8c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--hover);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                gap: 0.3rem;
+            }
+            
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .home h1 {
+                font-size: 2rem;
+            }
+
+            .blog-posts h2,
+            .about-blog h2 {
+                font-size: 1.3rem;
+            }
+
+            .blog-post {
+                padding: 1.5rem;
+            }
+
+            .blog-post h3 {
+                font-size: 1.1rem;
+            }
+
+            .back-to-top {
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+            section {
+                padding: 1rem 0.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav>
+        <ul>
+            <li><a href="home.html" class="nav-link">Home</a></li>
+            <li><a href="#blog" class="nav-link active">Blog Posts</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="home" id="home">
+        <h1>📝 Sharma Florist Blog</h1>
+        <p>Flower Care Tips & Floral Inspiration</p>
+        <p style="font-size: 1.1rem; color: #7bb274;">Expert articles on flower arrangements, seasonal blooms, and celebration ideas</p>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-posts" id="blog">
+        <h2>Latest Blog Posts</h2>
+        <div id="blogGrid" class="blog-grid"></div>
+        <div class="pagination">
+            <button id="prevPage" onclick="changePage('prev')" disabled>← Previous</button>
+            <button id="nextPage" onclick="changePage('next')">Next →</button>
+        </div>
+    </section>
+
+    <!-- Full Post View -->
+    <section id="fullPost" class="full-post">
+        <button class="post-navigation" onclick="backToPosts()">← Back to Posts</button>
+        <div id="fullPostContent"></div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Footer -->
+    <footer>
+        <div>Sharma Florist Blog &copy; 2025 | Flower Care Tips & Floral Inspiration</div>
+    </footer>
+
+    <script>
+        // Blog posts data
+        const blogPosts = [
+            
+
+
+
+{
+    id: 3,
+    title: "Send Flowers & Gifts to India on Raksha Bandhan 2025 – From Canada to Your Brother or Sister",
+    date: "January 10, 2025",
+    excerpt: "Send love to your siblings in India with our same-day flower delivery service from Canada. Special Raksha Bandhan arrangements and gift combos available.",
+    content: `<style>
+        :root {
+            --primary-color: #e83e8c;
+            --secondary-color: #6f42c1;
+            --whatsapp-color: #25D366;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg);
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+        }
+        
+        strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: white;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .cta {
+            background: var(--whatsapp-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 20px 0;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(37, 211, 102, 0.4);
+            background: #128C7E;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ccc, transparent);
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <div class="highlight-box">
+        <p>Looking to send love to your brother or sister in India this <strong>Raksha Bandhan 2025</strong>? We make it simple and quick for you to send <strong>fresh flowers and gifts from Canada to India</strong>. Whether you are in <strong>Toronto, Brampton, Vancouver, or Calgary</strong>, your surprise gift can reach <strong>Ghaziabad, Greater Noida, or Noida</strong> in just <strong>2 hours – same day delivery guaranteed!</strong></p>
+    </div>
+
+    <h3>Rakhi Special Flower & Gift Delivery to India</h3>
+    <p>This Raksha Bandhan, show your love with our <strong>fresh flower bouquet delivery service in India</strong>. We have <strong>small and big-size flower bouquets</strong>, <strong>custom flower arrangements</strong> with your choice of design, plus <strong>add-on gifts</strong> like <strong>chocolates, greeting cards, soft toys, and rakhis</strong>. Special <strong>10% OFF for all sisters</strong> ordering from Canada!</p>
+
+    <h3>How to Place Order from Canada?</h3>
+    <p>To place your order, simply <strong>WhatsApp "Hi" to +1-365-998-1208</strong> (our Canada number). You can then select your preferred bouquet and gift combo. Payment can be made in <strong>CAD via Interac to our Canadian account</strong>. We promise to deliver your thoughtful gift to your sibling's doorstep in India within just <strong>2 hours</strong>.</p>
+
+    <div style="text-align: center;">
+        <p style="font-size: 1.2em;">Make this <strong>Rakhi 2025 special</strong>. Surprise your brother or sister in India with a beautiful flower bouquet and gift – delivered with love from Canada.</p>
+        <a class="cta pulse" href="https://wa.me/13659981208">📱 WhatsApp to Order: +1-365-998-1208</a>
+    </div>
+
+    <h3>Trusted Raksha Bandhan Flower Delivery in India</h3>
+    <p>We are proud to be a <strong>local florist in Ghaziabad</strong> with fast delivery service across Ghaziabad including Nehru Nagar, Kavi Nagar, Raj Nagar, Indirapuram and Vasundhara. We also serve Greater Noida West/Noida Extension areas like Gaur City and Crossing Republic, as well as Noida sectors 62, 63, 50, 77, 78 and nearby areas.</p>
+
+    <p>With <strong>over 50 years of experience</strong> in the floral industry, we take special care in delivering <strong>fresh, beautiful flowers</strong> that help you express your love across thousands of miles.</p>
+
+    <h3>Why Choose Us?</h3>
+    <p>We stand out because we offer <strong>Canadian payment options and customer support</strong> for your convenience. Our <strong>lightning-fast 2-hour doorstep delivery in India</strong> ensures your gift arrives fresh and on time. We provide <strong>fully customizable bouquets and gift combos</strong> to suit your preferences. With <strong>excellent Google reviews</strong> and trust built over decades, we've served thousands of satisfied customers. Communication is always easy through <strong>WhatsApp or phone calls</strong>.</p>`
+},
+
+{
+    id: 4,
+    title: "Flower Deliver on Ayodhya Ram Mandir Inauguration 22 January 2024",
+    date: "January 1, 2024",
+    excerpt: "Celebrate Ram Mandir's inauguration with auspicious flower blessings from Sharma Florist Ghaziabad.",
+    content: "Jai Shri Ram! Celebrate Ram Mandir's Inauguration with Sharma Florist Ghaziabad!\n\nThe wait is over! On 22nd January 2024, Ayodhya's grand Ram Mandir will proudly open its doors, marking a glorious moment in Indian history. Join the nationwide celebration with Sharma Florist Ghaziabad!\n\nSend auspicious flower blessings to your loved ones:\n- Showering happiness: Choose from our vibrant selection of roses, marigolds, lilies, and more, all bursting with auspicious beauty.\n- Spreading the message: Each bouquet comes with a complimentary \"Jai Shri Ram\" card to express your devotion and joy.\n- Same-day delivery: We understand the urgency of celebrating history. Order before noon and we'll deliver your floral greetings on the same day within Ghaziabad and Greater Noida.\n\nLet the fragrance of devotion fill your homes:\n- Bring blessings: Adorn your mandir with fresh flower garlands and mangopatti to welcome Lord Ram in his divine abode.\n- Decorate with love: Create a serene atmosphere with floral arrangements for your puja room or living space.\n- Spread the joy, share the blessings. Celebrate the opening of Ram Mandir with Sharma Florist Ghaziabad. Call us now or order online!"
+},
+
+{
+    id: 5,
+    title: "Celebrity Wedding Flower Jai Mala (latest trends and design)",
+    date: "September 16, 2022",
+    excerpt: "Latest celebrity design wedding jaimala garlands with home delivery service starting from ₹1000 to ₹12000.",
+    content: "Jaimala on stage in a wedding is the most precious moment for couples, as it is recorded for lifelong period in the heart of both. Jaimala should be heavy and with latest celebrity design, we can make wedding garland jaimala on demands and customer design. The range of jaimala at your shop is start from ₹1000 to ₹12000 and delivery service is also available for the same.\n\nCall us or Whatsapp us to book them in advance\nhttps://www.sharmaflorist.com/p/sharma-flower-decorators.html"
+},
+
+{
+    id: 6,
+    title: "Chocolate with Rose Flower Bouquet",
+    date: "December 1, 2023",
+    excerpt: "Delightful chocolate flower bouquets combining rich chocolates with elegant roses for Ghaziabad and Greater Noida West.",
+    content: "If you have a sweet tooth and a love for beautiful blooms, our chocolate flower bouquets are a delightful treat for you! Imagine a bouquet that combines the richness of Kinder Joy, Dairy Milk, KitKat, and Foster chocolates with the elegance of red roses, pink roses, and pitch roses. These delectable arrangements are not just a feast for the eyes but also a scrumptious delight for your taste buds. Our unique creations cater to those with a sweet tooth and an appreciation for the beauty of fresh flowers.\n\nFor residents of Ghaziabad and Greater Noida West, our delivery service brings these exquisite chocolate flower bouquets right to your doorstep. Whether it's a special occasion or just a sweet gesture, our bouquets make for a perfect gift. Our florist flower shop, located in Nehru Nagar, Ghaziabad, is the hub of creativity where these delightful combinations come to life. Experience the joy of giving and receiving with our chocolate flower bouquets that are sure to bring smiles and sweetness to any moment."
+},
+
+{
+    id: 7,
+    title: "Big Size Flower Arrangement for Special Occasions",
+    date: "January 23, 2023",
+    excerpt: "Same-day flower bouquet delivery service in Ghaziabad with a wide range of bouquet options for all occasions.",
+    content: "Flower bouquet delivery service in Ghaziabad is a great way to surprise your loved ones and make them feel special. Flowers have long been a symbol of love, friendship, and appreciation, and sending a bouquet of fresh flowers is the perfect way to express your feelings. Rose N Petals in Nehru Nagar, Ghaziabad offer you a wide range of bouquet options to choose from. Whether you're looking for a classic red rose bouquet or a more unique and colorful arrangement, you're sure to find something that suits your needs.\n\nOne of the best things about our flower delivery services is that we offer same-day delivery. This means that you can place your order and have the bouquet delivered to your loved one's doorstep within hours. This is especially useful for last-minute gifting or when you forget an important occasion. This can be a great way to surprise your loved one and make their special day even more memorable. Our bouquet always be fresh and arranged beautifully."
+},
+
+{
+    id: 8,
+    title: "Haldi Mehandi Decoration Setup in Vasundhara Ghaziabad",
+    date: "July 14, 2023",
+    excerpt: "Stunning Haldi Mehandi ceremony decoration with fresh flowers in Vasundhara, Ghaziabad.",
+    content: "We transformed the Haldi Mehandi ceremony into a picturesque affair with Sharma Flowers' stunning decoration setups. The event took place in Vasundhara, Ghaziabad. Our expert team specializes in creating mesmerizing backdrops, embellishing house gates with vibrant flowers, and enhancing the overall ambiance with table pots and tent entrance decorations, all using fresh and original flowers.\n\nWhen it comes to Haldi Mehandi decorations, we understand the importance of setting the right mood and capturing the essence of the occasion. Our talented decorators pay meticulous attention to detail, ensuring that every element complements the vibrant energy of the ceremony. From floral backdrops that create a perfect photo opportunity to intricate house gate decorations that welcome your guests with warmth, our setups are designed to leave a lasting impression.\n\nAt Sharma Flowers, we take pride in sourcing the finest and freshest flowers to bring your Haldi Mehandi decoration vision to life. Our skilled team works closely with you to understand your preferences and incorporates personalized elements that reflect your unique style. Experience the magic of our expertly crafted setups in Vasundhara, Ghaziabad, and make your Haldi Mehandi ceremony an unforgettable celebration of love, joy, and togetherness."
+},
+
+{
+    id: 9,
+    title: "Flower Decoration Service for Haldi Mehandi Ceremonies in Noida, Ghaziabad and Greater Noida West",
+    date: "March 11, 2023",
+    excerpt: "Professional flower decoration services for Haldi Mehandi ceremonies with original and artificial flowers.",
+    content: "The Haldi Mehandi ceremony is a pre-wedding ritual that is typically observed in Hindu, Sikh, and Muslim weddings in India. It is usually held a day or two before the wedding day and is a fun-filled event where the bride and groom, along with their families and friends, come together to apply haldi (turmeric paste) and mehndi (henna designs) on their bodies.\n\nFlower decoration plays a crucial role in any wedding ceremony, and the Haldi Mehandi ceremony is no exception. It is a joyful and vibrant event where families and friends of the bride and groom come together to celebrate the upcoming wedding. The right flower decoration can add to the beauty and charm of the occasion and make it even more memorable.\n\nCONTACT US NOW https://www.sharmaflorist.com/p/sharma-flower-decorators.html\n\nAt our flower decoration service, we provide original and artificial flowers for Haldi Mehandi ceremonies in Noida, Ghaziabad, and Greater Noida West. Our experienced team of 10 years in the flower decoration field can create stunning flower arrangements that match the occasion's festive and celebratory mood.\n\nWe understand that every customer has a budget, and we always strive to work within it without compromising on the quality of our flower arrangements. Our team of experts can create unique and elegant flower designs that fit your budget and match your taste and preferences.\n\nWe take pride in using only original and fresh flowers in our decoration service. We understand that flowers are a symbol of love and affection, and we want to provide our customers with the best quality and freshest flowers to make their special day even more memorable.\n\nOur service includes setting up flower arrangements at the Haldi Mehandi venue, ensuring that they complement the occasion's overall theme and mood. We can create floral arches, flower walls, centerpieces, and other arrangements that bring out the beauty and vibrancy of the Haldi Mehandi ceremony.\n\nIn addition to original flowers, we also provide artificial flowers for customers who want to keep their flower arrangements as a keepsake or use them for future occasions. Our artificial flower arrangements are carefully crafted to resemble real flowers, and they last longer than fresh flowers.\n\nIn conclusion, our flower decoration service for Haldi Mehandi ceremonies in Noida, Ghaziabad, and Greater Noida West can make your special day even more memorable. We provide original and artificial flowers, work within your budget, and create stunning flower arrangements that match the occasion's festive and celebratory mood. So, if you are looking for a reliable and experienced flower decoration service, contact us today!"
+},
+
+{
+    id: 10,
+    title: "Celebrate Republic Day with Vibrant Elegance: Flower Decorations in Ghaziabad, Noida & Greater Noida",
+    date: "January 6, 2024",
+    excerpt: "Patriotic flower arrangements and garlands for Republic Day celebrations in schools, colleges and offices.",
+    content: "As India gears up to celebrate its 74th Republic Day on January 26th, 2024, let's honor the spirit of patriotism with vibrant yet elegant flower decorations! Sharma Florists, your trusted local florist in Ghaziabad, Noida, and Greater Noida, brings you a stunning collection of flower arrangements and garlands perfect for adorning your school, college, or corporate office.\n\nEmbrace the colors of our national flag with our signature tricolor garlands. Long, cascading genda marigold garlands in fiery orange represent courage and sacrifice, while Gudabri flower garlands in lush green symbolize peace and growth. The addition of vibrant Ashoka green pata garlands completes the patriotic picture, offering a touch of traditional charm.\n\nOur experienced team of decorators understands the significance of this national occasion. They will work closely with you to create beautiful and impactful arrangements that capture the essence of the day. Whether you envision a grand stage backdrop for your school assembly, a dignified entrance for your college campus, or a festive atmosphere for your corporate office, we have the expertise and creativity to bring your vision to life.\n\nDon't settle for generic decorations. Make this Republic Day truly special with the artistry and finesse of Sharma Florists. Visit us today or browse our online catalog to explore our wide range of floral arrangements and garlands. Let's work together to paint your community with the pride and joy of Republic Day!"
+},
+
+{
+    id: 11,
+    title: "Wedding Home Simple Design flower decoration - Setup by Ghaziabad Florist",
+    date: "November 4, 2024",
+    excerpt: "Elegant wedding home flower decoration services with same-day setup in Ghaziabad by experienced florists.",
+    content: "Transform your wedding home with a simple, elegant flower decoration setup by the best florist in Ghaziabad. We specialize in fast, same-day bookings and guarantee prompt task completion. Our experienced team ensures a neat and clean arrangement, and we handle all clean-up after the decoration. Book your decoration easily by phone, and we'll share images and pamphlets via WhatsApp to help you select your preferred design.\n\nWith over 50 years of experience, Ghaziabad Florist has been the trusted name in flower decoration across Ghaziabad, Noida, and Greater Noida. We operate from three convenient locations: Chaudhary Mod, Nehru Nagar, and Kavi Nagar, offering the best quality service. Call now to book and let our professional team add a touch of elegance to your special occasion."
+},
+
+{
+    id: 12,
+    title: "Stage and Entrance Decoration Service Ghaziabad, Noida",
+    date: "December 14, 2017",
+    excerpt: "Professional stage and entrance decoration services for weddings with fresh flowers, LED lights and colorful chunnis.",
+    content: "Stage and Entrance Decoration with Fresh Flowers, LED Focus Lights, Colorful Chunni, Wooden Pillar, Artificial Flowers etc. at Farm House, Banquet Hall or Tent for Wedding and Ring Ceremony Function. SharmaFlorist.com | Contact Mobile Number 9999889817 is the Best, Top Rated, Budget, Fast and Easy to Contact Service 24*7 available in Ghaziabad, Noida and Greater Noida. We are working since in 1950 and have full experience in all type of decoration at marriage, engagement or ring ceremony etc.\n\nFlowers Used by Sharma Flowers Ghaziabad | Sharma Flower Decorators Chaudhary Mod COntact Number\n\nStage & Entrance Decoration - Budget, Top Rated, Best Service in Ghaziabad, Noida, Greater Noida – Just Call and Book\n\nFlower Decoration Service in Ghaziabad - Raj Nagar, Kavi Nagar, Shastri Nagar, Chiranjiv Vihar, Nehru Nagar, Gandhi Nagar, Panchvati Colony, Vijay Nagar, Pratap Vihar, Siddharth Vihar, Arya Nagar, Vasundhara, Kaushambi, Vaishali, Indirapuram, Patel Nagar, Raj Nagar Extension, Shalimar Garden, Sahibabad, Hindon Vihar, Kamla Nehru Nagar, Sanjay Nagar, Govindpuram, Ambedkar Road, Lal Kuan, Mehrauli, Bamheta, Chipyana, Crossing Republik, Khora Colony etc\n\nFlower Decoration in Noida & Greater Noida - Gaur City 1 & 2, Mamura, Sector 122, 121, 70, 71, 62, 63, 65, 41, 37, 16, 15, 57, 39, 77, 50, 75, 76, 34 etc"
+}
+
+        ];
+
+        const POSTS_PER_PAGE = 4;
+        let currentPage = 1;
+
+        // URL handling and routing
+        function handlePostClick(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                const slug = post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+                const newURL = window.location.protocol === 'file:' 
+                    ? `?post=${postId}` 
+                    : `/blog/${slug}`;
+                window.history.pushState({ postId }, '', newURL);
+                showFullPost(postId);
+            }
+        }
+
+        function handleURL() {
+            const path = window.location.pathname;
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Handle query parameter format
+            if (urlParams.has('post')) {
+                const postId = parseInt(urlParams.get('post'));
+                showFullPost(postId);
+                return;
+            }
+            
+            // Handle new URL format
+            if (path.startsWith('/blog/')) {
+                const slug = path.split('/blog/')[1];
+                const post = blogPosts.find(p => {
+                    const postSlug = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+                    return postSlug === slug;
+                });
+                
+                if (post) {
+                    showFullPost(post.id);
+                    // Update meta tags
+                    document.title = `${post.title} | Sharma Florist Blog`;
+                    document.querySelector('meta[name="description"]').content = post.excerpt;
+                } else {
+                    currentPage = 1;
+                    displayPosts();
+                }
+            } else {
+                const page = parseInt(urlParams.get('page')) || 1;
+                currentPage = page;
+                displayPosts();
+            }
+        }
+
+        // Initialize page
+        window.onload = function() {
+            handleURL();
+            
+            // Handle browser back/forward buttons
+            window.onpopstate = function(event) {
+                handleURL();
+            };
+        };
+
+        function displayPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+            const endIndex = startIndex + POSTS_PER_PAGE;
+            const postsToShow = blogPosts.slice(startIndex, endIndex);
+
+            blogGrid.innerHTML = postsToShow.map(post => `
+                <div class="blog-post">
+                    <h3>${post.title}</h3>
+                    <div class="date">${post.date}</div>
+                    <p>${post.excerpt}</p>
+                    <a href="javascript:void(0);" onclick="handlePostClick(${post.id})" class="read-more" data-post-id="${post.id}">Read More →</a>
+                </div>
+            `).join('');
+
+            // Update pagination buttons
+            document.getElementById('prevPage').disabled = currentPage === 1;
+            document.getElementById('nextPage').disabled = endIndex >= blogPosts.length;
+        }
+
+        function changePage(direction) {
+            if (direction === 'prev' && currentPage > 1) {
+                window.location.href = `?page=${currentPage - 1}`;
+            } else if (direction === 'next' && (currentPage * POSTS_PER_PAGE) < blogPosts.length) {
+                window.location.href = `?page=${currentPage + 1}`;
+            }
+        }
+
+        function showFullPost(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+
+            document.getElementById('blog').style.display = 'none';
+            const fullPost = document.getElementById('fullPost');
+            fullPost.classList.add('active');
+
+            const nextPostId = blogPosts.findIndex(p => p.id === postId) + 1;
+            const hasNextPost = nextPostId < blogPosts.length;
+
+            fullPost.querySelector('#fullPostContent').innerHTML = `
+                <h2>${post.title}</h2>
+                <div class="date">${post.date}</div>
+                <div class="content">${post.content}</div>
+                ${hasNextPost ? `
+                    <div class="post-navigation">
+                        <button onclick="handlePostClick(${blogPosts[nextPostId].id})">
+                            Next Post: ${blogPosts[nextPostId].title} →
+                        </button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function backToPosts() {
+            window.history.pushState({}, '', currentPage > 1 ? `?page=${currentPage}` : '/');
+            displayPosts();
+            document.getElementById('blog').style.display = 'block';
+            document.getElementById('fullPost').classList.remove('active');
+            // Reset meta tags
+            document.title = 'Sharma Florist Blog | Flower Care Tips & Floral Inspiration';
+            document.querySelector('meta[name="description"]').content = 'Stay updated with the latest flower trends, care tips, and floral inspiration. Read our expert articles on flower arrangements, seasonal blooms, and celebration ideas.';
+        }
+
+        // Smooth scroll and active nav
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html> 
