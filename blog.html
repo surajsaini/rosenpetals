@@ -662,8 +662,16 @@
 
         // Optional custom slugs map: set your preferred URL slug per post id
         const customSlugs = {
-              3: 'raksha-bandhan-flowers-delivery-canada-to-ghaziabad-noida',
-            // 4: 'ram-mandir-inauguration-flowers-jan-22-2024',
+            3: 'raksha-bandhan-flowers-delivery-canada-to-ghaziabad-noida',
+            4: 'ram-mandir-inauguration-flower-delivery-ghaziabad',
+            5: 'celebrity-wedding-jaimala-flower-decoration-ghaziabad',
+            6: 'chocolate-rose-flower-bouquet-delivery-ghaziabad',
+            7: 'big-size-flower-arrangement-ghaziabad',
+            8: 'haldi-mehandi-flower-decoration-vasundhara',
+            9: 'haldi-mehandi-flower-decoration-noida-ghaziabad',
+            10: 'republic-day-flower-decoration-ghaziabad-noida',
+            11: 'wedding-home-flower-decoration-ghaziabad',
+            12: 'stage-entrance-flower-decoration-ghaziabad-noida'
         };
 
         function slugify(text) {
@@ -687,47 +695,60 @@
             if (!post) return;
             const slug = getSlug(post);
             const isFile = window.location.protocol === 'file:';
-            const href = isFile ? `blog.html#slug=${slug}` : `/blog/${slug}/`;
-            window.location.href = href;
+            const href = isFile ? `blog.html?slug=${slug}` : `/blog/${slug}`;
+            window.history.pushState({}, '', href);
+            showFullPost(post.id);
         }
 
         function handleURL() {
-            const path = window.location.pathname;
+            const pathname = window.location.pathname;
             const urlParams = new URLSearchParams(window.location.search);
-            const hash = window.location.hash || '';
             
-            // Legacy query parameter format removed
-            
-            // Handle new URL format
-            if (path.startsWith('/blog/')) {
-                const slug = path.split('/blog/')[1].replace(/\/?$/, '');
+            // Check for slug in URL path first
+            const slugMatch = pathname.match(/\/blog\/(.+)/);
+            if (slugMatch) {
+                const slug = slugMatch[1];
                 const post = blogPosts.find(p => getSlug(p) === slug);
-                
+                if (post) {
+                    showFullPost(post.id);
+                    // Update meta tags for SEO
+                    document.title = `${post.title} | Sharma Florist Blog`;
+                    document.querySelector('meta[name="description"]').content = post.excerpt;
+                    document.querySelector('link[rel="canonical"]').href = `https://sharmaflorist.com/blog/${slug}`;
+                    return;
+                }
+            }
+            
+            // Check for slug parameter as fallback
+            if (urlParams.has('slug')) {
+                const slug = urlParams.get('slug');
+                const post = blogPosts.find(p => getSlug(p) === slug);
                 if (post) {
                     showFullPost(post.id);
                     // Update meta tags
                     document.title = `${post.title} | Sharma Florist Blog`;
                     document.querySelector('meta[name="description"]').content = post.excerpt;
-                } else {
-                    currentPage = 1;
-                    displayPosts();
+                    return;
                 }
-            } else if (hash.startsWith('#slug=')) {
-                const slug = decodeURIComponent(hash.replace('#slug=', ''));
-                const post = blogPosts.find(p => getSlug(p) === slug);
+            }
+            
+            // Check for old post parameter (backward compatibility)
+            if (urlParams.has('post')) {
+                const postId = parseInt(urlParams.get('post'));
+                const post = blogPosts.find(p => p.id === postId);
                 if (post) {
                     showFullPost(post.id);
+                    // Update meta tags
                     document.title = `${post.title} | Sharma Florist Blog`;
                     document.querySelector('meta[name="description"]').content = post.excerpt;
-                } else {
-                    currentPage = 1;
-                    displayPosts();
+                    return;
                 }
-            } else {
-                const page = parseInt(urlParams.get('page')) || 1;
-                currentPage = page;
-                displayPosts();
             }
+            
+            // Handle pagination
+            const page = parseInt(urlParams.get('page')) || 1;
+            currentPage = page;
+            displayPosts();
         }
 
         // Initialize page
@@ -746,18 +767,17 @@
             const endIndex = startIndex + POSTS_PER_PAGE;
             const postsToShow = blogPosts.slice(startIndex, endIndex);
 
-            const isFile = window.location.protocol === 'file:';
-            blogGrid.innerHTML = postsToShow.map(post => {
-                const slug = getSlug(post);
-                const href = isFile ? `blog.html#slug=${slug}` : `/blog/${slug}/`;
-                return `
+            blogGrid.innerHTML = postsToShow.map(post => `
                 <div class="blog-post">
                     <h3>${post.title}</h3>
                     <div class="date">${post.date}</div>
                     <p>${post.excerpt}</p>
-                    <a href="${href}" class="read-more" data-post-id="${post.id}">Read More →</a>
-                </div>`;
-            }).join('');
+                    <a href="${window.location.protocol === 'file:' ? `blog.html?slug=${getSlug(post)}` : `/blog/${getSlug(post)}`}" 
+                       onclick="handlePostClick(${post.id}); return false;" 
+                       class="read-more" 
+                       data-post-id="${post.id}"
+                       data-slug="${getSlug(post)}">Read More →</a>
+                </div>`).join('');
 
             // Update pagination buttons
             document.getElementById('prevPage').disabled = currentPage === 1;
@@ -799,7 +819,7 @@
 
         function backToPosts() {
             const isFile = window.location.protocol === 'file:';
-            const base = isFile ? 'blog.html' : '/blog.html';
+            const base = isFile ? 'blog.html' : '/blog';
             const url = currentPage > 1 ? `${base}?page=${currentPage}` : base;
             window.history.pushState({}, '', url);
             displayPosts();
