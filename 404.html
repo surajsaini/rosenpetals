@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting…</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.ico">
+  <meta http-equiv="refresh" content="0; url=/blog.html" />
+  <script>
+    (function() {
+      // If path is /blog/slug, preserve it and let blog.html handle it
+      var path = window.location.pathname;
+      if (path.indexOf('/blog/') === 0) {
+        // Redirect to blog.html with a hint param so the SPA can parse slug
+        var slug = path.substring('/blog/'.length);
+        var url = '/blog.html#slug=' + encodeURIComponent(slug);
+        window.location.replace(url);
+        return;
+      }
+      // Fallback to home
+      window.location.replace('/');
+    })();
+  </script>
+</head>
+<body>
+  Redirecting…
+</body>
+</html>
+
