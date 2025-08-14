@@ -930,6 +930,13 @@
             // Force image loading after content is inserted
             setTimeout(() => {
                 const images = fullPost.querySelectorAll('img');
+                // Normalize any relative image paths (e.g., images/ or ./images/) to root-absolute /images/
+                images.forEach(img => {
+                    const orig = img.getAttribute('src');
+                    if (orig && /^(\.\/)?images\//.test(orig)) {
+                        img.setAttribute('src', orig.replace(/^(\.\/)?images\//, '/images/'));
+                    }
+                });
                 images.forEach(img => {
                     if (img.src) {
                         const newImg = new Image();
