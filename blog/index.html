@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Florist Blog | Flower Care Tips & Floral Inspiration</title>
+    <meta name="description" content="Stay updated with the latest flower trends, care tips, and floral inspiration. Read our expert articles on flower arrangements, seasonal blooms, and celebration ideas.">
+    <link rel="canonical" href="https://sharmaflorist.com/blog/">
+    <meta property="og:site_name" content="Sharma Florist">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sharma Florist Blog | Flower Care Tips & Floral Inspiration">
+    <meta property="og:description" content="Stay updated with the latest flower trends, care tips, and floral inspiration.">
+    <meta property="og:url" content="https://sharmaflorist.com/blog/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/blog/blog-styles.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/" class="active">Blog Posts</a></li>
+        </ul>
+    </nav>
+
+    <section class="home" id="home">
+        <h1>Sharma Florist Blog</h1>
+        <p>Flower Care Tips & Floral Inspiration</p>
+        <p style="font-size: 1.1rem; color: #7bb274;">Expert articles on flower arrangements, seasonal blooms, and celebration ideas</p>
+    </section>
+
+    <section class="blog-posts" id="blog">
+        <h2>Latest Blog Posts</h2>
+        <div id="blogGrid" class="blog-grid"></div>
+        <div class="pagination">
+            <span id="prevLink"></span>
+            <span id="nextLink"></span>
+        </div>
+    </section>
+
+    <footer>
+        <div>Sharma Florist &copy; 2025 | Flower Delivery & Decoration Services in Ghaziabad, Noida & Greater Noida</div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <script>
+        fetch('/blog/whatsapp-button.html')
+            .then(r => r.text())
+            .then(html => document.body.insertAdjacentHTML('beforeend', html));
+    </script>
+
+    <script src="/blog/blog-script.js"></script>
+
+    <script>
+        const POSTS_PER_PAGE = 6;
+        const blogPosts = [
+            {id: 18, slug: "corporate-flower-decoration-ghaziabad-noida-greater-Noida", title: "Corporate Flower Decoration & Delivery in Ghaziabad, Noida & Greater Noida", date: "October, 01", excerpt: "SharmaFlorist.com provides fresh flower decoration for corporate events, offices, and hotels in Ghaziabad, Noida & Greater Noida. Same-day flower delivery available."},
+            {id: 17, slug: "birthday-flower-bouquets-delivery-ghaziabad-noida-greater-noida", title: "Birthday Flower Bouquets & Same Day Delivery in Ghaziabad, Noida & Greater Noida", date: "October, 01", excerpt: "SharmaFlorist.com offers fresh birthday flower bouquets with same-day delivery in Ghaziabad, Noida, and Greater Noida. Choose roses, lilies, orchids, or mixed bouquets."},
+            {id: 16, slug: "wedding-flower-decoration-ghaziabad-noida-greater-noida", title: "Wedding Flower Decoration & Delivery in Ghaziabad, Noida & Greater Noida", date: "October, 02", excerpt: "Book wedding flower decoration and bouquet delivery in Ghaziabad, Noida & Greater Noida with SharmaFlorist.com. Fresh flowers for stage decoration, mandap setup, varmala, and bridal bouquets."},
+            {id: 15, slug: "flower-delivery-decoration-ghaziabad-noida-greater-Noida", title: "Best Fresh Flower & Leaf Decoration in Ghaziabad – By SharmaFlorist.com", date: "October, 03", excerpt: "SharmaFlorist.com is one of the oldest and most trusted flower shops in Ghaziabad, Noida, and Greater Noida. We specialize in fresh flower delivery, wedding and event decoration, and seasonal bouquets."},
+            {id: 14, slug: "navratri-genda-flower-patta-mala-ghaziabad", title: "Navratri Flowers in Ghaziabad – Buy Genda Garlands & Ashoke Patta Malas", date: "September, 17", excerpt: "Celebrate Navratri 2023 with fresh genda (marigold) garlands and Ashoke patta malas from Sharma Flowers Ghaziabad. Perfect for temples, homes, and puja decoration."},
+            {id: 13, slug: "teacher-day-flower-delivery-ghaziabad-greater-noida", title: "Teacher's Day Flower Delivery Service in Ghaziabad & Greater Noida West", date: "August 29", excerpt: "Best Teacher's Day flower delivery service in Ghaziabad & Greater Noida West. Fresh roses, lilies, gerberas, carnations & more. Same-day 2-hour delivery available."},
+            {id: 4, slug: "teej-chulha-flower-decoration-ghaziabad-noida-greater-noida", title: "Teej Chulha Fresh Flower Decoration Service in Ghaziabad, Noida, Greater Noida", date: "August 16", excerpt: "Book Teej Chulha fresh flower decoration in Ghaziabad, Noida & Greater Noida. Same-day booking available on WhatsApp. Artificial & real flowers. Trusted florist with 50 years of experience."},
+            {id: 1, slug: "shraddha-antim-sanskar-white-flower-ghaziabad-noida", title: "Shraddha and Antim Sanskar White Flower Decoration in Ghaziabad & Noida by Sharma Flower Decorators", date: "August 13", excerpt: "Sharma Flower Decorators offers elegant white flower decorations for Shraddha and Antim Sanskar in Ghaziabad and Noida. Using fresh white roses, gerberas, and other white flowers, our team sets up beautiful, long-lasting arrangements."},
+            {id: 2, slug: "flower-decoration-delivery-independence-day-ghaziabad-greater-noida", title: "Independence Day Flower Decoration and Delivery by Sharma Flower Decorators", date: "August 13", excerpt: "Sharma Flower Decorators in Ghaziabad, serving since 1950, offers fresh and fast Independence Day flower decoration and delivery in schools, homes, offices, malls, and shops."},
+            {id: 3, slug: "raksha-bandhan-flowers-delivery-canada-to-ghaziabad-noida", title: "Send Flowers & Gifts to India on Raksha Bandhan 2025 – From Canada to Your Brother or Sister", date: "August 10", excerpt: "Send fresh & trending Raksha Bandhan bouquets from Canada to India. Same day 2-hour delivery with custom bouquets."},
+            {id: 5, slug: "celebrity-wedding-jaimala-flower-decoration-ghaziabad", title: "Celebrity Wedding Jai Mala (latest trends and design)", date: "September 16", excerpt: "Latest celebrity design wedding jaimala garlands with home delivery service starting from ₹1000 to ₹12000."},
+            {id: 6, slug: "chocolate-rose-flower-bouquet-delivery-ghaziabad", title: "Chocolate with Rose Flower Bouquet", date: "December 1", excerpt: "Delightful chocolate flower bouquets combining rich chocolates with elegant roses for Ghaziabad and Greater Noida West."},
+            {id: 7, slug: "big-size-flower-arrangement-ghaziabad", title: "Big Size Flower Arrangement for Special Occasions", date: "January 23", excerpt: "Same-day flower bouquet delivery service in Ghaziabad with a wide range of bouquet options for all occasions."},
+            {id: 8, slug: "haldi-mehandi-flower-decoration-vasundhara", title: "Haldi Mehandi Decoration Setup in Vasundhara Ghaziabad", date: "July 14", excerpt: "Stunning Haldi Mehandi ceremony decoration with fresh flowers in Vasundhara, Ghaziabad."},
+            {id: 9, slug: "haldi-mehandi-flower-decoration-noida-ghaziabad", title: "Flower Decoration Service for Haldi Mehandi Ceremonies in Noida, Ghaziabad and Greater Noida West", date: "March 11", excerpt: "Professional flower decoration services for Haldi Mehandi ceremonies with original and artificial flowers."},
+            {id: 10, slug: "republic-day-flower-decoration-ghaziabad-noida", title: "Celebrate Republic Day with Vibrant Elegance: Flower Decorations in Ghaziabad, Noida & Greater Noida", date: "January 6", excerpt: "Patriotic flower arrangements and garlands for Republic Day celebrations in schools, colleges and offices."},
+            {id: 11, slug: "wedding-home-flower-decoration-ghaziabad", title: "Wedding Home Simple Design flower decoration - Setup by Ghaziabad Florist", date: "November 4", excerpt: "Elegant wedding home flower decoration services with same-day setup in Ghaziabad by experienced florists."},
+            {id: 12, slug: "stage-entrance-flower-decoration-ghaziabad-noida", title: "Stage and Entrance Decoration Service Ghaziabad, Noida", date: "December 14", excerpt: "Professional stage and entrance decoration services for weddings with fresh flowers, LED lights and colorful chunnis."}
+        ];
+
+        function displayPage(page = 1) {
+            const startIdx = (page - 1) * POSTS_PER_PAGE;
+            const endIdx = startIdx + POSTS_PER_PAGE;
+            const postsToShow = blogPosts.slice(startIdx, endIdx);
+
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = postsToShow.map(post => `
+                <div class="blog-post">
+                    <h3>${post.title}</h3>
+                    <div class="date">${post.date}</div>
+                    <p>${post.excerpt}</p>
+                    <a href="/blog/${post.slug}.html" class="read-more">Read More →</a>
+                </div>
+            `).join('');
+
+            // Pagination
+            const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+            let prevLink = '';
+            let nextLink = '';
+
+            if (page > 1) {
+                prevLink = page === 2 ? '<a href="/blog/">← Previous</a>' : `<a href="/blog/?page=${page - 1}">← Previous</a>`;
+            } else {
+                prevLink = '<span class="disabled">← Previous</span>';
+            }
+
+            if (page < totalPages) {
+                nextLink = `<a href="/blog/?page=${page + 1}">Next →</a>`;
+            } else {
+                nextLink = '<span class="disabled">Next →</span>';
+            }
+
+            document.getElementById('prevLink').innerHTML = prevLink;
+            document.getElementById('nextLink').innerHTML = nextLink;
+        }
+
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = parseInt(urlParams.get('page')) || 1;
+            displayPage(page);
+        });
+    </script>
+</body>
+
+</html>
