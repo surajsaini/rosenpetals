@@ -1,0 +1,35 @@
+# Robots.txt for Sharma Florist
+# Allows search engines to crawl and index the website
+
+# Allow all bots
+User-agent: *
+Allow: /
+
+# Specify sitemap location
+Sitemap: https://sharmaflorist.com/sitemap.xml
+
+# Crawl delay (optional - in seconds)
+Crawl-delay: 1
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots (examples)
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
